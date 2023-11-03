@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Spotify MusicBrainz Helper
-// @version     1.0.0
+// @version     1.1.0
 // @description Adds ISRCHunt and ATisket links to Spotify pages for easy access to external tools for adding releases to MusicBrainz
 // @author      Dr.Blank
 // @license     MIT
@@ -17,40 +17,53 @@ const ATISKET = `https://atisket.pulsewidth.org.uk`;
 const COUNTRIES = encodeURIComponent(`GB,US,DE`);
 const ISRCHUNT = `https://isrchunt.com`;
 
-function getSpotifyId() {
-  // Get the current URL
-  var currentUrl = new URL(window.location.href);
+function getSpotifyId(url = window.location.href) {
+  // Get the current URL if not provided
+  var currentUrl = new URL(url);
 
   // Get the path segments
   var pathSegments = currentUrl.pathname.split("/");
 
   // Check if the page is an artist, album, track, or playlist
-  if (["artist", "album", "track", "playlist"].includes(pathSegments[1])) {
-    // Get the Spotify ID
-    var id = pathSegments[2];
-
-    // Get the type
-    var type = pathSegments[1];
-
-    return { id: id, type: type };
-  } else {
+  if (!["artist", "album", "track", "playlist"].includes(pathSegments[1])) {
     return null;
   }
+  // Get the Spotify ID
+  var id = pathSegments[2];
+
+  // Get the type
+  var type = pathSegments[1];
+
+  return { id: id, type: type };
 }
 
-function getISRCHuntUrl(id, type) {
-  if (type !== "artist" && type !== "playlist") {
+function getISRCHuntUrl(url = window.location.href) {
+  // Get the artist ID
+  var spotifyInfo = getSpotifyId(url);
+  // return if null
+  if (spotifyInfo === null) {
     return null;
   }
-  var newUrl = `${ISRCHUNT}/?spotifyPlaylist=https%3A%2F%2Fopen.spotify.com%2F${type}%2F${id}`;
+
+  if (spotifyInfo.type !== "artist" && spotifyInfo.type !== "playlist") {
+    return null;
+  }
+
+  var newUrl = `${ISRCHUNT}/?spotifyPlaylist=${url}`;
   return newUrl;
 }
 
-function getATisketUrl(id, type) {
-  if (type !== "album") {
+function getATisketUrl(url = window.location.href) {
+  var spotifyInfo = getSpotifyId(url);
+  // return if null
+  if (spotifyInfo === null) {
     return null;
   }
-  var newUrl = `${ATISKET}/?preferred_countries=${COUNTRIES}&spf_id=${id}&preferred_vendor=spf`;
+
+  if (spotifyInfo.type !== "album") {
+    return null;
+  }
+  var newUrl = `${ATISKET}/?preferred_countries=${COUNTRIES}&spf_id=${spotifyInfo.id}&preferred_vendor=spf`;
   return newUrl;
 }
 
@@ -59,14 +72,20 @@ function addButtonToActionBar(newUrl, buttonText = "External Tool") {
   if (newUrl === null) {
     return;
   }
-  console.log("Adding button for " + newUrl);
   // Select the element where you want to insert the button
   var element = document.querySelector('button[data-testid="more-button"]');
+  // return if null
+  if (element === null) {
+    return;
+  }
+  var id = "external-tool-button";
+  console.log("Adding button for " + newUrl);
   // Create a new button element
   var button = document.createElement("button");
 
   // Set the properties of the button
   button.textContent = buttonText;
+  button.id = id;
   button.className = element.className;
   button.style.paddingInline = "1rem";
   button.style.paddingBlock = "0.5rem";
@@ -78,8 +97,61 @@ function addButtonToActionBar(newUrl, buttonText = "External Tool") {
     window.open(newUrl, "_blank");
   };
 
+  // remove the button if it already exists
+  var previousButton = document.getElementById(id);
+  if (previousButton !== null) {
+    previousButton.remove();
+  }
   // Insert the button into the selected element
   element.parentNode.insertBefore(button, element.nextSibling);
+}
+
+function addButtonToDiscography(newUrl, buttonText = "External Tool") {
+  // return if null
+  if (newUrl === null) {
+    return;
+  }
+  // Select the element where you want to insert the button
+  var section = document.querySelector('section[data-testid="artist-page"]');
+  // return if null
+  if (section === null) {
+    return;
+  }
+  console.log("Adding button for " + newUrl);
+
+  var id = "external-tool-button";
+
+  // select the first div in the section
+  var existingDiv = section.querySelector("div").querySelector("div");
+
+  // find a existing button in the section
+  var existingSpotifyButton = existingDiv.querySelector("button");
+
+  // Create a new button element
+  var button = document.createElement("button");
+
+  // Set the properties of the button
+  button.textContent = buttonText;
+  button.id = id;
+  button.className = existingSpotifyButton.className;
+  button.style.paddingInline = "1rem";
+  button.style.paddingBlock = "0.5rem";
+  button.style.border = "1px solid";
+  button.style.borderRadius = "1rem";
+  button.style.fontSize = "0.85rem";
+  button.style.minBlockSize = "2rem";
+  button.style.marginInline = "1rem";
+  button.onclick = function () {
+    window.open(newUrl, "_blank");
+  };
+
+  // remove the button if it already exists
+  var previousButton = document.getElementById(id);
+  if (previousButton !== null) {
+    previousButton.remove();
+  }
+  // append the button to the existing div before the existing button
+  existingDiv.insertBefore(button, existingSpotifyButton);
 }
 
 function addExternalToolButton() {
@@ -94,15 +166,16 @@ function addExternalToolButton() {
   var newUrl = null;
   var buttonText = null;
   if (spotifyInfo.type === "artist" || spotifyInfo.type === "playlist") {
-    newUrl = getISRCHuntUrl(spotifyInfo.id, spotifyInfo.type);
+    newUrl = getISRCHuntUrl();
     buttonText = "ISRCHunt";
   } else if (spotifyInfo.type === "album") {
-    newUrl = getATisketUrl(spotifyInfo.id, spotifyInfo.type);
+    newUrl = getATisketUrl();
     buttonText = "ATisket";
   }
 
-  // Add the button
+  // Add the button to the action bar, if failed try to add it to the discography
   addButtonToActionBar(newUrl, buttonText);
+  addButtonToDiscography(newUrl, buttonText);
 }
 
 window.addEventListener("load", function () {
@@ -111,16 +184,14 @@ window.addEventListener("load", function () {
 
 // every time SPA changes the url we need to add the button again
 
-// JavaScript
 let oldUrl = window.location.href;
+let newUrl = window.location.href;
 
+// every 2 seconds check if the url has changed
 setInterval(function () {
-  let newUrl = window.location.href;
-
+  newUrl = window.location.href;
   if (newUrl !== oldUrl) {
-    // The URL has changed!
-    console.log("URL changed!");
     addExternalToolButton();
     oldUrl = newUrl;
   }
-}, 1000); // Check every second
+}, 2000);
