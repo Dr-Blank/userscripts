@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Spotify MusicBrainz Helper
-// @version     1.1.0
+// @version     1.1.1
 // @description Adds ISRCHunt and ATisket links to Spotify pages for easy access to external tools for adding releases to MusicBrainz
 // @author      Dr.Blank
 // @license     MIT
@@ -48,6 +48,9 @@ function getISRCHuntUrl(url = window.location.href) {
   if (spotifyInfo.type !== "artist" && spotifyInfo.type !== "playlist") {
     return null;
   }
+
+  // encode the url
+  url = encodeURIComponent(url);
 
   var newUrl = `${ISRCHUNT}/?spotifyPlaylist=${url}`;
   return newUrl;
