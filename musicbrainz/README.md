@@ -6,7 +6,11 @@ This folder contains various userscripts related to MusicBrainz tools.
 
 Below is a list of the userscripts available in this folder. Click on the script name to install it.
 
-* [Spotify MusicBrainz Helper](./SpotifyMusicBrainzHelper.user.js): Adds a button to Spotify to ISRCHunt and Atisket
+### [Spotify MusicBrainz Helper](./SpotifyMusicBrainzHelper.md)
+
+Adds a button to Spotify to ISRCHunt and Atisket.
+
+Install: [SpotifyMusicBrainzHelper](https://github.com/Dr-Blank/userscripts/raw/main/musicbrainz/SpotifyMusicBrainzHelper.user.js)
 
 ## Installation
 
