@@ -4,8 +4,9 @@
 // @description Adds ISRCHunt and ATisket links to Spotify pages for easy access to external tools for adding releases to MusicBrainz
 // @author      Dr.Blank
 // @license     MIT
-// @homepage    https://github.com/Dr-Blank/userscripts/musicbrainz/SpotifyMusicBrainzHelper.md
+// @homepage    https://github.com/Dr-Blank/userscripts/blob/main/musicbrainz/SpotifyMusicBrainzHelper.md
 // @downloadURL https://github.com/Dr-Blank/userscripts/raw/main/musicbrainz/SpotifyMusicBrainzHelper.user.js
+// @updateURL   https://github.com/Dr-Blank/userscripts/raw/main/musicbrainz/SpotifyMusicBrainzHelper.user.js
 // @match       *://open.spotify.com/*
 // @grant       none
 // @run-at      document-idle
