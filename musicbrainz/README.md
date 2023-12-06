@@ -20,6 +20,10 @@ Below is a list of the bookmarklets available in this folder. Click on the scrip
 
 This bookmarklet sets the language of the current release to whatever you want.
 
+### [Clear Redundant OSTs in Title](./redudantOST.bookmarklet.md)
+
+This bookmarklet will clear the redundant OSTs in the title of the release and Add it as meta-data.
+
 ## Installation
 
 To use these scripts, you'll need to install a userscript manager in your browser, such as Tampermonkey or Greasemonkey. Once installed, you can click on the script name above to install it.
