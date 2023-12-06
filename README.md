@@ -1,13 +1,12 @@
-# Random Userscripts
+# Random Userscripts and Bookmarklets
 
-This project contains a collection of various userscripts, each organized into its own folder.
-
-## UserScripts
+This project contains a collection of various userscripts and bookmarklets, each organized into its own folder.
 
 Below is a list of the userscripts available in this project. Each script has its own README file with more detailed information.
 
-* [MusicBrainz](./musicbrainz/README.md): Adds various features to MusicBrainz and related sites.
+## [MusicBrainz](./musicbrainz/README.md)
 
+Adds various features to [MusicBrainz](https://musicbrainz.org/) and related sites.
 
 ## Installation
 
@@ -16,4 +15,3 @@ To use these scripts, you'll need to install a userscript manager in your browse
 ## Contributing
 
 Contributions are welcome! Please read the [contributing guidelines](./CONTRIBUTING.md) before getting started.
-
