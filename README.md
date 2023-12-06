@@ -4,7 +4,7 @@ This project contains a collection of various userscripts and bookmarklets, each
 
 Below is a list of the userscripts available in this project. Each script has its own README file with more detailed information.
 
-## [MusicBrainz](./musicbrainz/README.md)
+## [MusicBrainz (click me!)](./musicbrainz/README.md)
 
 Adds various features to [MusicBrainz](https://musicbrainz.org/) and related sites.
 
