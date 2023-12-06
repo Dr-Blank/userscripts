@@ -8,8 +8,10 @@ javascript: (function () {
     $("#release-group").val(newTitle).change();
     isSoundtrack = true;
   }
-  if (isSoundtrack) {
-    $("#primary-type").val(1).change();
-    $("#secondary-types").val(2).change();
-  }
+  setTimeout(() => {
+    if (isSoundtrack) {
+      $("#primary-type").val(1).change();
+      $("#secondary-types").val(2).change();
+    }
+  }, 300);
 })();
