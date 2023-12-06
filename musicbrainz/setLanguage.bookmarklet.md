@@ -4,7 +4,9 @@
 
 This bookmarklet sets the language of the current release to whatever you want. It's useful for when you're adding a release and you want to set the language to something other than English and is a lot faster than scrolling through the list of languages or typing the language in the select box.
 
-## Code
+! WARNING: You need to change the language in the code before using it.
+
+## [Code](./setLanguage.bookmarklet.js)
 
 ```javascript
 javascript: (function() {
