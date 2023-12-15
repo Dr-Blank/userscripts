@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        YT Music MusicBrainz Importer
-// @version     0.1.0
+// @version     0.1.1
 // @description Helper script for importing releases from YT Music to MusicBrainz
 // @author      Dr.Blank
 // @license     MIT
