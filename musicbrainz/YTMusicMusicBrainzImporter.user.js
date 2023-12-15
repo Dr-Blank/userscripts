@@ -96,23 +96,17 @@ console.log(getTrackTitles());
 // get the track artists
 function getTrackArtists() {
   // get the tracklist
-  var tracklist = getTracklist();
+  var tracklist = document.querySelector(
+    "#content-wrapper #contents #contents"
+  );
 
   // get the track artists yt-formatted-string
-  tracklist = tracklist.querySelectorAll("yt-formatted-string");
+  tracklist = tracklist.querySelectorAll(".secondary-flex-columns");
 
-  // filter tracklist only where any of its a href starting with /channel/
-  artists = [...tracklist].filter((track) =>
-    [...track.querySelectorAll("a")].some((artist) =>
-      artist.href.match(/\/?channel\//)
-    )
-  );
+  var artists = [...tracklist].map((track) => track.innerText);
 
-  // for each track artist make a list of all a.text elements so now we have a list of lists
-  artists = [...artists].map((artist) => artist.querySelectorAll("a"));
-  artists = [...artists].map((artist) =>
-    [...artist].map((artist) => artist.innerText)
-  );
+  // for each artist split by , and & and make a list of lists
+  artists = [...artists].map((artist) => artist.split(/,|&/));
 
   // return list of tracks text
   return artists;
