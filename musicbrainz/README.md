@@ -12,6 +12,12 @@ Adds a button to Spotify to ISRCHunt and Atisket.
 
 Install: [SpotifyMusicBrainzHelper](https://github.com/Dr-Blank/userscripts/raw/main/musicbrainz/SpotifyMusicBrainzHelper.user.js)
 
+### [YT Music MusicBrainz Importer](./YTMusicMusicBrainzImporter.md)
+
+Adds a button to YT Music to import the current release to MusicBrainz.
+
+Install: [YTMusicMusicBrainzImporter](https://github.com/Dr-Blank/userscripts/raw/main/musicbrainz/YTMusicMusicBrainzImporter.user.js)
+
 ## Bookmarklets
 
 Below is a list of the bookmarklets available in this folder. Click on the script name to install it.
