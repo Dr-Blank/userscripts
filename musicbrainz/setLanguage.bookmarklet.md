@@ -24,10 +24,3 @@ javascript: (function() {
     }
 })();
 ```
-
-## Installation
-
-1. Create a new bookmark in your browser.
-2. Copy the code and paste it into the URL field of the bookmark.
-3. Save the bookmark.
-4. Go to a release page on MusicBrainz and click the bookmark.

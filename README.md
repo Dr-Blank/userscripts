@@ -10,7 +10,11 @@ Adds various features to [MusicBrainz](https://musicbrainz.org/) and related sit
 
 ## Installation
 
+### Userscripts
 To use these scripts, you'll need to install a userscript manager in your browser, such as Tampermonkey or Greasemonkey. Once installed, you can add any of the scripts from this project.
+
+### Bookmarklets
+To use these bookmarklets, you can create a new bookmark in your browser and paste the code from the bookmarklet into the URL field. Then, when you're on a page where you want to use the bookmarklet, you can click the bookmark to run the script.
 
 ## Contributing
 
