@@ -30,6 +30,10 @@ This bookmarklet sets the language of the current release to whatever you want.
 
 This bookmarklet will clear the redundant OSTs in the title of the release and Add it as meta-data.
 
+### [Set Medium Unknown](./setMediumUnkown.bookmarklet.md)
+
+This bookmarklet sets the format medium to unknown and ticks "I don't know".
+
 ## Installation
 
 To use these scripts, you'll need to install a userscript manager in your browser, such as Tampermonkey or Greasemonkey. Once installed, you can click on the script name above to install it.
