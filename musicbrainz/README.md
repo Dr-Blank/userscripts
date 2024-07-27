@@ -8,7 +8,7 @@ Below is a list of the userscripts available in this folder. Click on the script
 
 ### [<img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png" width=20> Spotify MusicBrainz Helper](./SpotifyMusicBrainzHelper.md)
 
-Adds a button to Spotify to ISRCHunt and Atisket.
+Adds a button to Spotify to ISRCHunt, Atisket and Harmony.
 
 Install: [SpotifyMusicBrainzHelper](https://github.com/Dr-Blank/userscripts/raw/main/musicbrainz/SpotifyMusicBrainzHelper.user.js)
 
