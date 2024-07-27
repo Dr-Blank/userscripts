@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Spotify MusicBrainz Helper
-// @version     1.1.1
-// @description Adds ISRCHunt and ATisket links to Spotify pages for easy access to external tools for adding releases to MusicBrainz
+// @version     1.2.0
+// @description Adds ISRCHunt, ATisket and Harmony links to Spotify pages for easy access to external tools for adding releases to MusicBrainz
 // @author      Dr.Blank
 // @license     MIT
 // @homepage    https://github.com/Dr-Blank/userscripts/blob/main/musicbrainz/SpotifyMusicBrainzHelper.md
@@ -12,9 +12,16 @@
 // @run-at      document-idle
 // ==/UserScript==
 
+// External tools Settings
+const USE_ISRCHUNT = true;
+const USE_HARMONY = true;
+const USE_ATISKET = true;
+
+// External tools URLs
+const HARMONY = `https://harmony.pulsewidth.org.uk`;
 const ATISKET = `https://atisket.pulsewidth.org.uk`;
 // change this to your preferred country codes
-const COUNTRIES = encodeURIComponent(`GB,US,DE`);
+const COUNTRIES = encodeURIComponent(`GB,US,DE,JP`);
 const ISRCHUNT = `https://isrchunt.com`;
 
 function getSpotifyId(url = window.location.href) {
@@ -56,6 +63,21 @@ function getISRCHuntUrl(url = window.location.href) {
   return newUrl;
 }
 
+function getHarmonyUrl(url = window.location.href) {
+  var spotifyInfo = getSpotifyId(url);
+  // return if null
+  if (spotifyInfo === null) {
+    return null;
+  }
+
+  if (spotifyInfo.type !== "album") {
+    return null;
+  }
+  // https://harmony.pulsewidth.org.uk/release?url=&gtin=886445809619&region=&deezer=&itunes=&spotify=&tidal=
+  var newUrl = `${HARMONY}/release?url=${url}&region=${COUNTRIES}&deezer=&itunes=&spotify=&tidal=`;
+  return newUrl;
+}
+
 function getATisketUrl(url = window.location.href) {
   var spotifyInfo = getSpotifyId(url);
   // return if null
@@ -70,7 +92,11 @@ function getATisketUrl(url = window.location.href) {
   return newUrl;
 }
 
-function addButtonToActionBar(newUrl, buttonText = "External Tool") {
+function addButtonToActionBar(
+  newUrl,
+  buttonText = "External Tool",
+  id = "external-tool-button"
+) {
   // return if null
   if (newUrl === null) {
     return;
@@ -81,7 +107,6 @@ function addButtonToActionBar(newUrl, buttonText = "External Tool") {
   if (element === null) {
     return;
   }
-  var id = "external-tool-button";
   console.log("Adding button for " + newUrl);
   // Create a new button element
   var button = document.createElement("button");
@@ -109,7 +134,11 @@ function addButtonToActionBar(newUrl, buttonText = "External Tool") {
   element.parentNode.insertBefore(button, element.nextSibling);
 }
 
-function addButtonToDiscography(newUrl, buttonText = "External Tool") {
+function addButtonToDiscography(
+  newUrl,
+  buttonText = "External Tool",
+  id = "external-tool-button"
+) {
   // return if null
   if (newUrl === null) {
     return;
@@ -121,8 +150,6 @@ function addButtonToDiscography(newUrl, buttonText = "External Tool") {
     return;
   }
   console.log("Adding button for " + newUrl);
-
-  var id = "external-tool-button";
 
   // select the first div in the section
   var existingDiv = section.querySelector("div").querySelector("div");
@@ -165,20 +192,22 @@ function addExternalToolButton() {
     return;
   }
 
-  // Construct the new URL for the button based on type
-  var newUrl = null;
-  var buttonText = null;
-  if (spotifyInfo.type === "artist" || spotifyInfo.type === "playlist") {
-    newUrl = getISRCHuntUrl();
-    buttonText = "ISRCHunt";
+  if (
+    USE_ISRCHUNT &&
+    (spotifyInfo.type === "artist" || spotifyInfo.type === "playlist")
+  ) {
+    addButtonToActionBar(getISRCHuntUrl(), "ISRCHunt", "isrchunt-button");
+    addButtonToDiscography(getISRCHuntUrl(), "ISRCHunt", "isrchunt-button");
   } else if (spotifyInfo.type === "album") {
-    newUrl = getATisketUrl();
-    buttonText = "ATisket";
+    if (USE_HARMONY) {
+      addButtonToActionBar(getHarmonyUrl(), "Harmony", "harmony-button");
+      addButtonToDiscography(getHarmonyUrl(), "Harmony", "harmony-button");
+    }
+    if (USE_ATISKET) {
+      addButtonToActionBar(getATisketUrl(), "ATisket", "atisket-button");
+      addButtonToDiscography(getATisketUrl(), "ATisket", "atisket-button");
+    }
   }
-
-  // Add the button to the action bar, if failed try to add it to the discography
-  addButtonToActionBar(newUrl, buttonText);
-  addButtonToDiscography(newUrl, buttonText);
 }
 
 window.addEventListener("load", function () {
@@ -197,4 +226,4 @@ setInterval(function () {
     addExternalToolButton();
     oldUrl = newUrl;
   }
-}, 2000);
+}, 1500);
