@@ -6,13 +6,13 @@ This folder contains various userscripts related to MusicBrainz tools.
 
 Below is a list of the userscripts available in this folder. Click on the script name to install it.
 
-### [Spotify MusicBrainz Helper](./SpotifyMusicBrainzHelper.md)
+### [<img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png" width=20> Spotify MusicBrainz Helper](./SpotifyMusicBrainzHelper.md)
 
 Adds a button to Spotify to ISRCHunt and Atisket.
 
 Install: [SpotifyMusicBrainzHelper](https://github.com/Dr-Blank/userscripts/raw/main/musicbrainz/SpotifyMusicBrainzHelper.user.js)
 
-### [YT Music MusicBrainz Importer](./YTMusicMusicBrainzImporter.md)
+### [<img src="https://seeklogo.com/images/Y/youtube-music-logo-50422973B2-seeklogo.com.png" width=20> YT Music MusicBrainz Importer](./YTMusicMusicBrainzImporter.md)
 
 Adds a button to YT Music to import the current release to MusicBrainz.
 
@@ -22,7 +22,7 @@ Install: [YTMusicMusicBrainzImporter](https://github.com/Dr-Blank/userscripts/ra
 
 Below is a list of the bookmarklets available in this folder. Click on the script name to install it.
 
-### [Set Language](./setLanguage.bookmarklet.md)
+### [🌐 Set Language](./setLanguage.bookmarklet.md)
 
 This bookmarklet sets the language of the current release to whatever you want.
 
