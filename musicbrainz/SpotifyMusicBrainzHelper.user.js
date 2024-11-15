@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Spotify MusicBrainz Helper
-// @version     1.2.0
+// @version     1.3.0
 // @description Adds ISRCHunt, ATisket and Harmony links to Spotify pages for easy access to external tools for adding releases to MusicBrainz
 // @author      Dr.Blank
 // @license     MIT
@@ -73,8 +73,8 @@ function getHarmonyUrl(url = window.location.href) {
   if (spotifyInfo.type !== "album") {
     return null;
   }
-  // https://harmony.pulsewidth.org.uk/release?url=&gtin=886445809619&region=&deezer=&itunes=&spotify=&tidal=
-  var newUrl = `${HARMONY}/release?url=${url}&region=${COUNTRIES}&deezer=&itunes=&spotify=&tidal=`;
+  // https://harmony.pulsewidth.org.uk/release?url=&gtin=886445809619&region=&musicbrainz=&deezer=&itunes=&spotify=&tidal=
+  var newUrl = `${HARMONY}/release?url=${url}&region=${COUNTRIES}&musicbrainz=&deezer=&itunes=&spotify=&tidal=`;
   return newUrl;
 }
 
