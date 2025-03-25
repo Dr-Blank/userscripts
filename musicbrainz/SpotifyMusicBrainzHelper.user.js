@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Spotify MusicBrainz Helper
-// @version     1.3.0
+// @version     1.3.1
 // @description Adds ISRCHunt, ATisket and Harmony links to Spotify pages for easy access to external tools for adding releases to MusicBrainz
 // @author      Dr.Blank
 // @license     MIT
