@@ -74,7 +74,7 @@ function getHarmonyUrl(url = window.location.href) {
     return null;
   }
   // https://harmony.pulsewidth.org.uk/release?url=&gtin=886445809619&region=&musicbrainz=&deezer=&itunes=&spotify=&tidal=
-  var newUrl = `${HARMONY}/release?url=${url}&region=${COUNTRIES}&musicbrainz=&deezer=&itunes=&spotify=&tidal=`;
+  var newUrl = `${HARMONY}/release?url=${url}&category=preferred`;
   return newUrl;
 }
 
