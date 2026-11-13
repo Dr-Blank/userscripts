@@ -8,6 +8,10 @@ Below is a list of the userscripts available in this project. Each script has it
 
 Adds various features to [MusicBrainz](https://musicbrainz.org/) and related sites.
 
+## [⏱️ Shortlinks (click me!)](./shortlinks/README.md)
+
+Helps get through ad-gated shortlinks, e.g. keeps countdown timers running when the window loses focus.
+
 ## Installation
 
 ### Userscripts
